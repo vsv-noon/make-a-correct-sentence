@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Arial", sans-serif;
+}
+
+body {
+  background-color: gray;
+}
+
+.main {
+  /* width: 824px; */
+  width: 1024px;
+  height: 1024px;
+  background-color: #fff;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block,
+#input {
+  width: 700px;
+  height: 40px;
+  background-color: #D9D9D9;
+  text-align: center;
+  border-radius: 12px;
+  line-height: 40px;
+}
+
+.h1 {
+  /* margin-top: 46px;
+  margin-bottom: 120px; */
+  margin: 46px 312px 120px 312px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 70px;
+}
+
+.main-task {
+  margin-bottom: 30px;
+}
+
+.task-sentence {
+  margin-bottom: 70px;
+}
+
+.sub-task {
+  margin-bottom: 31px;
+}
+
+.words-field {
+  margin-bottom: 31px;
+}
+
+#input {
+  margin-bottom: 90px;
+}
+
+.result {
+  margin-bottom: 50px;
+  color: red;
+  background: none;
+}
+
+.btn-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 384px;
+  width: 700px;
+
+}
+
+
+#start-btn,
+#check-btn {
+  width: 150px;
+  height: 50px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+#start-btn {
+  background-color: #B8F869;
+}
+
+#check-btn {
+  background-color: #F2D29E;
+}
