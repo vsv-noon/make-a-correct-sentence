@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 body {
@@ -22,21 +24,20 @@ body {
 
 .block,
 #input {
-  width: 700px;
+  width: 800px;
   height: 40px;
   background-color: #D9D9D9;
   text-align: center;
   border-radius: 12px;
-  line-height: 40px;
+  line-height: 40px;  
 }
 
 .h1 {
-  /* margin-top: 46px;
-  margin-bottom: 120px; */
   margin: 46px 312px 120px 312px;
   font-size: 24px;
   font-weight: 600;
   line-height: 70px;
+  text-transform: uppercase;
 }
 
 .main-task {
@@ -52,11 +53,33 @@ body {
 }
 
 .words-field {
+  width: 100%;
+  height: 40px;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  gap: 45px;
   margin-bottom: 31px;
+}
+
+.word {
+  height: 40px;
+  padding: 0 15px;
+  background-color: #D9D9D9;
+  text-align: center;
+  border-radius: 12px;
+  line-height: 40px;
 }
 
 #input {
   margin-bottom: 90px;
+  padding: 10px 16px;
+  border: none;
+  text-align: left;
+}
+
+#input:focus {
+  outline: none;
 }
 
 .result {
@@ -70,7 +93,6 @@ body {
   justify-content: space-between;
   gap: 384px;
   width: 700px;
-
 }
 
 
@@ -78,14 +100,41 @@ body {
 #check-btn {
   width: 150px;
   height: 50px;
+  border: none;
   border-radius: 12px;
   cursor: pointer;
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 #start-btn {
   background-color: #B8F869;
 }
 
+#start-btn:hover {
+  color: #fff;
+  background-color: #509A46;
+}
+
+
+#start-btn:active {
+  background-color: #284824;
+}
+
 #check-btn {
   background-color: #F2D29E;
+}
+
+#check-btn:hover {
+  color: #fff;
+  background-color: #BA9558;
+}
+
+#check-btn:active {
+  background-color: #5E4A2A
 }

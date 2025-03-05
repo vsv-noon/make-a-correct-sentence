@@ -9,6 +9,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
+  <link rel="icon" type="image/ico" href="./img/favicon.ico">
   <link rel="stylesheet" href="./css/style.css">
   <title>Make a correct sentence</title>
 </head>
@@ -17,15 +18,19 @@
   <main class="main">
     <h1 class="h1">Make a correct sentence</h1>
     <p class="main-task block">Переведите предложение</p>
-    <p class="task-sentence block">Как вас зовут?</p>
-    <p class="sub-task block">Из данных слов составьте предложение и расставьте знаки препинания</p>
-    <div class="words-field block">Нажмите Start, чтобы начать игру.</div>
+    <p class="task-sentence block">Нажмите Start, чтобы начать игру</p>
+    <p class="sub-task block">Из данных слов составьте предложение с учетом прописных букв и знаков препинания</p>
+    <!-- <div class="words-field block">Нажмите Start, чтобы начать игру.</div> -->
+    <div class="words-field">
+      <!-- <p class="word">hello</p>
+      <p class="word ">world</p> -->
+    </div>
 
-    <input id="input" type="text" placeholder="Введите текст..." autocomplete="off">
+    <input id="input" class="disabled" type="text" placeholder="Введите текст..." autocomplete="off">
     <p class="result block"></p>
     <div class="btn-block">
       <button id="start-btn">Start</button>
-      <button id="check-btn" type="submit">Check</button>
+      <button id="check-btn" class="disabled" type="submit">Check</button>
     </div>
   </main>
 
