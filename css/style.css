@@ -27,7 +27,6 @@ body {
   justify-content: end;
   align-items: end;
   background-color: var(--background-light);
-  /* padding: 20px; */
 }
 
 .theme-changer-label {
@@ -68,7 +67,7 @@ body {
 .main {
   /* width: 824px; */
   max-width: 1024px;
-  height: 1024px;
+  height: 90vh;
   background-color: var(--background-light);
   margin: 0 auto;
   display: flex;
@@ -89,7 +88,7 @@ body {
 .h1 {
   width: 100%;
   text-align: center;
-  margin: 70px 312px 120px 312px;
+  margin: 10px 312px 50px 312px;
   font-size: 24px;
   font-weight: 600;
   line-height: 70px;
@@ -139,7 +138,7 @@ body {
 }
 
 .result {
-  margin-bottom: 90px;
+  margin-bottom: 50px;
   font-size: 20px;
   color: red;
   background: transparent;
