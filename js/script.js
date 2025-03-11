@@ -16,7 +16,7 @@ const themeChangerLabel = document.querySelector('.theme-changer-label');
 
 let current = 0;
 
-const url = './../data/sentences.json';
+const url = './data/sentences.json';
 const arrEng = [];
 const arrRus = [];
 
