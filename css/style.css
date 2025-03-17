@@ -14,7 +14,7 @@
   font-family: "Inter", "Arial", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 body {
@@ -40,7 +40,7 @@ body {
 .theme-changer-label .svg-moon {
   width: 30px;
   stroke: #000;
-  transition: all 0.5s ease;
+  /* transition: all 0.5s ease; */
 }
 
 .theme-changer-label:hover .svg-moon {
@@ -50,7 +50,7 @@ body {
 .theme-changer-label .svg-sun {
   width: 30px;
   stroke: #fff;
-  transition: all 0.5s ease;
+  /* transition: all 0.5s ease; */
 }
 
 .theme-changer-label:hover .svg-sun {
@@ -68,7 +68,7 @@ body {
 .main {
   /* width: 824px; */
   max-width: 1024px;
-  height: 90vh;
+  height: 87vh;
   background-color: var(--background-light);
   margin: 0 auto;
   display: flex;
@@ -165,7 +165,7 @@ body {
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.5s ease;
+  /* transition: all 0.5s ease; */
   text-transform: uppercase;
 }
 
@@ -223,6 +223,42 @@ body {
 .dark-theme #check-btn:active {
   color: var(--font-color-dark);
   background-color: #F2D29E;
+}
+
+.footer {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 15px 112px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-light);
+}
+
+.dark-theme .p-copyright {
+  background-color: transparent;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+}
+
+.github-icon {
+  width: 30px;
+  height: 30px;
+  fill: #24292f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark-theme .github-icon {
+  fill: #fff;
+}
+
+.github-icon:hover {
+  fill: #9c9c83;
 }
 
 .dark-theme {

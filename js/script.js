@@ -2,6 +2,7 @@
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
+const footer = document.querySelector('.footer');
 const svgMoon = document.querySelector('.svg-moon');
 const svgSun = document.querySelector('.svg-sun');
 const startButton = document.getElementById('start-btn');
@@ -48,12 +49,14 @@ themeChangerLabel.addEventListener('click', () => {
     svgMoon.classList.add('svg-non-display');
     header.classList.add('dark-theme');
     main.classList.add('dark-theme');
+    footer.classList.add('dark-theme');
     svgSun.classList.remove('svg-non-display');
   } else {
     !themeChangerInput.checked;
     svgSun.classList.add('svg-non-display');
     svgMoon.classList.remove('svg-non-display');
     header.classList.remove('dark-theme');
+    footer.classList.remove('dark-theme');
     main.classList.remove('dark-theme');
   }
   resultFieldBackground();
@@ -124,3 +127,7 @@ function resultFieldBackground() {
     result.style.background = 'transparent';
   }
 }
+
+// Copyright
+
+document.getElementById('year').appendChild(document.createTextNode(new Date().getFullYear()));
