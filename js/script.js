@@ -45,24 +45,55 @@ fetchSentencesJSON().then((data) => {
 //     }
 //   });
 
-themeChangerLabel.addEventListener("click", () => {
-  if (themeChangerInput.checked) {
-    themeChangerInput.checked;
-    svgMoon.classList.add("svg-non-display");
-    header.classList.add("dark-theme");
-    main.classList.add("dark-theme");
-    footer.classList.add("dark-theme");
-    svgSun.classList.remove("svg-non-display");
-  } else {
-    !themeChangerInput.checked;
-    svgSun.classList.add("svg-non-display");
-    svgMoon.classList.remove("svg-non-display");
-    header.classList.remove("dark-theme");
-    footer.classList.remove("dark-theme");
-    main.classList.remove("dark-theme");
+function initTheme() {
+  if (localStorage.getItem('theme')) {
+    if (localStorage.getItem('theme') === 'dark') {
+      darkTheme();
+    } else {
+      lightTheme();
+    }
   }
-  resultFieldBackground();
+};
+
+initTheme();
+
+themeChangerInput.addEventListener("click", () => {
+     if (themeChangerInput.checked) {
+       darkTheme();
+       localStorage.setItem('theme', 'dark');
+    } else {
+      lightTheme();
+      localStorage.setItem('theme', 'light');
+    }
+    resultFieldBackground();
 });
+
+// function changeTheme(themeChangerInput) {
+//   svgMoon.classList.toggle("svg-none-display");
+//   header.classList.toggle("dark-theme");
+//   main.classList.toggle("dark-theme");
+//   footer.classList.toggle("dark-theme");
+//   svgSun.classList.toggle("svg-none-display");
+//   resultFieldBackground();
+// }
+
+function darkTheme() {
+  themeChangerInput.checked = true;
+  svgSun.classList.remove("svg-none-display");
+  svgMoon.classList.add("svg-none-display");
+  header.classList.add("dark-theme");
+  main.classList.add("dark-theme");
+  footer.classList.add("dark-theme");
+}
+
+function lightTheme() {
+  themeChangerInput.checked = false;
+  svgSun.classList.add("svg-none-display");
+  svgMoon.classList.remove("svg-none-display");
+  header.classList.remove("dark-theme");
+  footer.classList.remove("dark-theme");
+  main.classList.remove("dark-theme");
+}
 
 input.addEventListener("input", () => {
   if (input.value.length !== 0) {
@@ -171,7 +202,6 @@ document.addEventListener("click", (event) => {
     // } else {
     //   input.value += ' ' + shuffled[target.id];
     // }
-
   }
 
   if (input.value) {
