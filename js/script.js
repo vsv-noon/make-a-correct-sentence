@@ -8,6 +8,7 @@ const svgSun = document.querySelector('.svg-sun');
 const startButton = document.getElementById('start-btn');
 const checkButton = document.getElementById('check-btn');
 const input = document.getElementById('input');
+const resetButton = document.querySelector('.reset-btn');
 const sentenceField = document.querySelector('.task-sentence');
 const wordsField = document.querySelector('.words-field');
 const result = document.querySelector('.result');
@@ -66,12 +67,22 @@ themeChangerLabel.addEventListener('click', () => {
 input.addEventListener('input', () => {
   if (input.value.length !== 0) {
     checkButton.classList.remove('disabled');
+    resetButton.style.display = 'block';
   } else {
     checkButton.classList.add('disabled');
+    resetButton.style.display = 'none';
     result.innerHTML = '';
     result.style.background = 'transparent';
   }
 });
+
+resetButton.addEventListener('click', () => {
+  input.value = '';
+  checkButton.classList.add('disabled');
+    resetButton.style.display = 'none';
+    result.innerHTML = '';
+    result.style.background = 'transparent';
+})
 
 input.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
@@ -104,6 +115,8 @@ startButton.addEventListener('click', function (event) {
   checkButton.classList.add('disabled');
   input.classList.remove('disabled');
   input.focus();
+
+  // console.log(word);
 });
 
 checkButton.addEventListener('click', () => {
