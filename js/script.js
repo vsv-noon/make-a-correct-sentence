@@ -1,24 +1,24 @@
 // import { arrEng, arrRus } from "./../data/arrays.js";
 
-const header = document.querySelector('.header');
-const main = document.querySelector('.main');
-const footer = document.querySelector('.footer');
-const svgMoon = document.querySelector('.svg-moon');
-const svgSun = document.querySelector('.svg-sun');
-const startButton = document.getElementById('start-btn');
-const checkButton = document.getElementById('check-btn');
-const input = document.getElementById('input');
-const resetButton = document.querySelector('.reset-btn');
-const sentenceField = document.querySelector('.task-sentence');
-const wordsField = document.querySelector('.words-field');
-const result = document.querySelector('.result');
+const header = document.querySelector(".header");
+const main = document.querySelector(".main");
+const footer = document.querySelector(".footer");
+const svgMoon = document.querySelector(".svg-moon");
+const svgSun = document.querySelector(".svg-sun");
+const startButton = document.getElementById("start-btn");
+const checkButton = document.getElementById("check-btn");
+const input = document.getElementById("input");
+const resetButton = document.querySelector(".reset-btn");
+const sentenceField = document.querySelector(".task-sentence");
+const wordsField = document.querySelector(".words-field");
+const result = document.querySelector(".result");
 
-const themeChangerInput = document.querySelector('#theme-changer-input');
-const themeChangerLabel = document.querySelector('.theme-changer-label');
+const themeChangerInput = document.querySelector("#theme-changer-input");
+const themeChangerLabel = document.querySelector(".theme-changer-label");
 
 let current = 0;
 
-const url = './data/sentences.json';
+const url = "./data/sentences.json";
 const arrEng = [];
 const arrRus = [];
 let shuffled = [];
@@ -27,12 +27,12 @@ async function fetchSentencesJSON() {
   const response = await fetch(url);
   const sentences = await response.json();
   return sentences;
-};
+}
 
-fetchSentencesJSON().then(data => {
+fetchSentencesJSON().then((data) => {
   for (let i = 0; i < data.length; i++) {
-    arrEng[i] = data[i]['eng'];
-    arrRus[i] = data[i]['rus'];
+    arrEng[i] = data[i]["eng"];
+    arrRus[i] = data[i]["rus"];
   }
 });
 
@@ -45,86 +45,93 @@ fetchSentencesJSON().then(data => {
 //     }
 //   });
 
-themeChangerLabel.addEventListener('click', () => {
+themeChangerLabel.addEventListener("click", () => {
   if (themeChangerInput.checked) {
     themeChangerInput.checked;
-    svgMoon.classList.add('svg-non-display');
-    header.classList.add('dark-theme');
-    main.classList.add('dark-theme');
-    footer.classList.add('dark-theme');
-    svgSun.classList.remove('svg-non-display');
+    svgMoon.classList.add("svg-non-display");
+    header.classList.add("dark-theme");
+    main.classList.add("dark-theme");
+    footer.classList.add("dark-theme");
+    svgSun.classList.remove("svg-non-display");
   } else {
     !themeChangerInput.checked;
-    svgSun.classList.add('svg-non-display');
-    svgMoon.classList.remove('svg-non-display');
-    header.classList.remove('dark-theme');
-    footer.classList.remove('dark-theme');
-    main.classList.remove('dark-theme');
+    svgSun.classList.add("svg-non-display");
+    svgMoon.classList.remove("svg-non-display");
+    header.classList.remove("dark-theme");
+    footer.classList.remove("dark-theme");
+    main.classList.remove("dark-theme");
   }
   resultFieldBackground();
+});
 
-})
-
-input.addEventListener('input', () => {
+input.addEventListener("input", () => {
   if (input.value.length !== 0) {
-    checkButton.classList.remove('disabled');
-    resetButton.style.display = 'block';
+    checkButton.classList.remove("disabled");
+    resetButton.style.display = "block";
   } else {
-    checkButton.classList.add('disabled');
-    resetButton.style.display = 'none';
-    result.innerHTML = '';
-    result.style.background = 'transparent';
+    initState();
   }
 });
 
-resetButton.addEventListener('click', () => {
-  input.value = '';
-  checkButton.classList.add('disabled');
-  resetButton.style.display = 'none';
-  result.innerHTML = '';
-  result.style.background = 'transparent';
-})
+resetButton.addEventListener("click", () => {
+  initState();
+});
 
-input.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
+input.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
     // event.preventDefault();
     checkButton.click();
   }
 });
 
-startButton.addEventListener('click', function (event) {
-  input.value = '';
-  wordsField.innerHTML = '';
-  result.innerHTML = '';
-  result.style.background = 'transparent';
+function initState() {
+  input.value = "";
+  result.innerHTML = "";
+  checkButton.classList.add("disabled");
+  resetButton.style.display = "none";
+  result.style.background = "transparent";
+}
+
+startButton.addEventListener("click", function (event) {
+  initState();
+  wordsField.innerHTML = "";
 
   current = Math.floor(Math.random() * arrEng.length);
   sentenceField.innerHTML = arrRus[current];
 
-  shuffled = arrEng[current].replace(/[\W_]+/g, ' ').trim().split(' ').sort(function () {
-    return 0.5 - Math.random();
-  }).concat(arrEng[current].replace(/[\w\s]+/g, '').trim().split(''));
+  shuffled = arrEng[current]
+    .replace(/[\W_]+/g, " ")
+    .trim()
+    .split(" ")
+    .sort(function () {
+      return 0.5 - Math.random();
+    })
+    .concat(
+      arrEng[current]
+        .replace(/[\w\s]+/g, "")
+        .trim()
+        .split("")
+    );
 
   shuffled.forEach((el, i) => {
-    let item = document.createElement('p');
-    item.setAttribute('id', i);
-    item.classList.add('word');
+    let item = document.createElement("p");
+    item.setAttribute("id", i);
+    item.classList.add("word");
     item.innerHTML = el.toLowerCase();
 
     wordsField.appendChild(item);
   });
 
-  checkButton.classList.add('disabled');
-  input.classList.remove('disabled');
+  input.classList.remove("disabled");
   input.focus();
 });
 
-checkButton.addEventListener('click', () => {
+checkButton.addEventListener("click", () => {
   if (input.value === arrEng[current]) {
-    result.style.color = 'green';
+    result.style.color = "green";
     result.innerHTML = `Поздравляем с правильным ответом!)`;
   } else {
-    result.style.color = 'red';
+    result.style.color = "red";
     // result.style.background = '#cdf2f5';
 
     result.innerHTML = `Вы ввели: <span>${input.value}</span>. Скорректируйте свой ответ.`;
@@ -134,31 +141,48 @@ checkButton.addEventListener('click', () => {
 });
 
 function resultFieldBackground() {
-  if ((main.classList.contains('dark-theme')) && input.value) {
-    result.style.background = '#cdf2f5';
+  if (main.classList.contains("dark-theme") && input.value) {
+    result.style.background = "#cdf2f5";
   } else {
-    result.style.background = 'transparent';
+    result.style.background = "transparent";
   }
 }
 
-document.addEventListener('click', (event) => {
-  let target = event.target.closest('.word');
+document.addEventListener("click", (event) => {
+  let target = event.target.closest(".word");
 
   if (target) {
-    if (input.value.length === 0 || shuffled[target.id].match(/[\W]/)) {
-      input.value += shuffled[target.id];
+    if (!input.value.includes(shuffled[target.id])) {
+      if (input.value.length === 0 || shuffled[target.id].match(/[\W]/)) {
+        input.value += shuffled[target.id];
+      } else {
+        input.value += " " + shuffled[target.id];
+      }
     } else {
-      input.value += ' ' + shuffled[target.id];
+      input.value = input.value.replace(shuffled[target.id], "").trim();
+      input.value = input.value.replace(/[\s]+/g, " ").trim();
+      if (!input.value) {
+        initState();
+      }
     }
-  };
+
+    // if (input.value.length === 0 || shuffled[target.id].match(/[\W]/)) {
+    //   input.value += shuffled[target.id];
+    // } else {
+    //   input.value += ' ' + shuffled[target.id];
+    // }
+
+  }
 
   if (input.value) {
     // target.classList.add('disabled');
-    checkButton.classList.remove('disabled');
-    resetButton.style.display = 'block';
+    checkButton.classList.remove("disabled");
+    resetButton.style.display = "block";
   }
 });
 
 // Copyright
 
-document.getElementById('year').appendChild(document.createTextNode(new Date().getFullYear()));
+document
+  .getElementById("year")
+  .appendChild(document.createTextNode(new Date().getFullYear()));
