@@ -21,6 +21,7 @@ let current = 0;
 const url = './data/sentences.json';
 const arrEng = [];
 const arrRus = [];
+let shuffled = [];
 
 async function fetchSentencesJSON() {
   const response = await fetch(url);
@@ -100,14 +101,15 @@ startButton.addEventListener('click', function (event) {
   current = Math.floor(Math.random() * arrEng.length);
   sentenceField.innerHTML = arrRus[current];
 
-  const shuffled = arrEng[current].toLowerCase().replace(/[\W_]+/g, ' ').trim().split(' ').sort(function () {
+  shuffled = arrEng[current].replace(/[\W_]+/g, ' ').trim().split(' ').sort(function () {
     return 0.5 - Math.random();
   }).concat(arrEng[current].replace(/[\w\s]+/g, '').trim().split(''));
 
-  shuffled.forEach((el) => {
+  shuffled.forEach((el, i) => {
     let item = document.createElement('p');
+    item.setAttribute('id', i);
     item.classList.add('word');
-    item.innerHTML = el;
+    item.innerHTML = el.toLowerCase();
 
     wordsField.appendChild(item);
   });
@@ -115,12 +117,9 @@ startButton.addEventListener('click', function (event) {
   checkButton.classList.add('disabled');
   input.classList.remove('disabled');
   input.focus();
-
-  // console.log(word);
 });
 
 checkButton.addEventListener('click', () => {
-  // if ((input.value).includes(arrEng[current])) {
   if (input.value === arrEng[current]) {
     result.style.color = 'green';
     result.innerHTML = `Поздравляем с правильным ответом!)`;
@@ -146,12 +145,10 @@ document.addEventListener('click', (event) => {
   let target = event.target.closest('.word');
 
   if (target) {
-    if (input.value.length === 0) {
-      input.value += target.innerHTML.slice(0, 1).toUpperCase() + target.innerHTML.slice(1)
-    } else if (target.innerHTML.match(/[\W]/)) {
-      input.value += target.innerHTML;
+    if (input.value.length === 0 || shuffled[target.id].match(/[\W]/)) {
+      input.value += shuffled[target.id];
     } else {
-      input.value += ' ' + target.innerHTML;
+      input.value += ' ' + shuffled[target.id];
     }
   };
 
@@ -160,9 +157,7 @@ document.addEventListener('click', (event) => {
     checkButton.classList.remove('disabled');
     resetButton.style.display = 'block';
   }
-
 });
-
 
 // Copyright
 
