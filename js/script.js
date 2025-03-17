@@ -79,9 +79,9 @@ input.addEventListener('input', () => {
 resetButton.addEventListener('click', () => {
   input.value = '';
   checkButton.classList.add('disabled');
-    resetButton.style.display = 'none';
-    result.innerHTML = '';
-    result.style.background = 'transparent';
+  resetButton.style.display = 'none';
+  result.innerHTML = '';
+  result.style.background = 'transparent';
 })
 
 input.addEventListener('keypress', (event) => {
@@ -120,13 +120,14 @@ startButton.addEventListener('click', function (event) {
 });
 
 checkButton.addEventListener('click', () => {
-  if ((input.value).includes(arrEng[current])) {
+  // if ((input.value).includes(arrEng[current])) {
+  if (input.value === arrEng[current]) {
     result.style.color = 'green';
     result.innerHTML = `Поздравляем с правильным ответом!)`;
   } else {
     result.style.color = 'red';
     // result.style.background = '#cdf2f5';
-    
+
     result.innerHTML = `Вы ввели: <span>${input.value}</span>. Скорректируйте свой ответ.`;
   }
 
@@ -140,6 +141,28 @@ function resultFieldBackground() {
     result.style.background = 'transparent';
   }
 }
+
+document.addEventListener('click', (event) => {
+  let target = event.target.closest('.word');
+
+  if (target) {
+    if (input.value.length === 0) {
+      input.value += target.innerHTML.slice(0, 1).toUpperCase() + target.innerHTML.slice(1)
+    } else if (target.innerHTML.match(/[\W]/)) {
+      input.value += target.innerHTML;
+    } else {
+      input.value += ' ' + target.innerHTML;
+    }
+  };
+
+  if (input.value) {
+    // target.classList.add('disabled');
+    checkButton.classList.remove('disabled');
+    resetButton.style.display = 'block';
+  }
+
+});
+
 
 // Copyright
 
